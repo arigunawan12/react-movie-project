@@ -5,20 +5,20 @@ import axios from "axios";
 import { logout } from "./Components/api";
 import { Nav, NavDropdown } from "react-bootstrap";
 
-const APIURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=c63defe7dae36af0e37367adff7a5fb4&page=1";
-const SEARCHAPI = "https://api.themoviedb.org/3/search/movie?&api_key=c63defe7dae36af0e37367adff7a5fb4&query=";
+const key = process.env.REACT_APP_API_KEY;
+const url = process.env.REACT_APP_URL;
+const SEARCHAPI = `${url}search/movie?&api_key=${key}&query=`;
 
 function Movie() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
 
   const changeTheSearch = (event) => {
-    // console.log(event.target.value);
     setSearch(event.target.value);
   };
   const getAllMovies = () => {
     axios
-      .get(APIURL)
+      .get(process.env.REACT_APP_API)
       .then((response) => {
         setMovies(response.data.results);
       })
@@ -32,7 +32,6 @@ function Movie() {
     axios
       .get(SEARCHAPI + search)
       .then((response) => {
-        console.log(response.data.results);
         setMovies(response.data.results);
       })
       .catch((error) => {
@@ -47,7 +46,7 @@ function Movie() {
       getSearchedMovies();
     }
   }, [search]);
-
+  // eslint-disable-next-line
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">

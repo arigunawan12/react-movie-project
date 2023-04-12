@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const key = "c63defe7dae36af0e37367adff7a5fb4";
 const session = localStorage.getItem("sessionId");
-const url = "https://api.themoviedb.org/3/";
+const url = process.env.REACT_APP_URL;
+const key = process.env.REACT_APP_API_KEY;
 
 export const getData = async () => {
   const movie = await axios.get(`${url}movie/popular?api_key=${key}`);
