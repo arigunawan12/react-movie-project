@@ -52,7 +52,7 @@ function Movie() {
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand text-light" href="#">
+          <a className="navbar-brand text-light" href="/movie">
             Movies
           </a>
           <Nav className="me-auto justify-content-end" style={{ width: "100%" }}>
