@@ -1,8 +1,7 @@
-import "./Movie.css";
-import Result from "./Components/Result";
+import Result from "../Components/Result";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { logout } from "./Components/api";
+import { logout } from "../Components/api.js";
 import { Nav, NavDropdown } from "react-bootstrap";
 
 const key = process.env.REACT_APP_API_KEY;
@@ -45,8 +44,9 @@ function Movie() {
     } else {
       getSearchedMovies();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
-  // eslint-disable-next-line
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark">
