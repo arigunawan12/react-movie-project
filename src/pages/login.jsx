@@ -60,7 +60,7 @@ function App() {
         }}
       >
         <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-          <p></p>
+          <p style={{ fontSize: "1.5rem", marginBottom: "2rem", fontWeight: "bold" }}>Welcome To Movie Mania</p>
           <Button variant="dark" onClick={handleShow}>
             Sign In
           </Button>
@@ -85,7 +85,7 @@ function App() {
               {formik.touched.password && formik.errors.password ? <div className="text-danger">{formik.errors.password}</div> : null}
             </Form.Group>
 
-            <Button variant="primary" type="submit">
+            <Button variant="dark" type="submit">
               Submit
             </Button>
           </Form>

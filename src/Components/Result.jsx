@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { Container, Row, Col, Card, Button, Modal, Image } from "react-bootstrap";
 
 export default function Result(props) {
   const boxes = props.movies.map((item, index) => {
@@ -6,28 +8,53 @@ export default function Result(props) {
   });
   return (
     <>
-      
-      <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 gap-2 w-100">{boxes}</div>
-      </div>
+      <Container>
+        <Row>{boxes}</Row>
+      </Container>
     </>
   );
 }
 
 const Box = (props) => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const IMGPATH = "https://image.tmdb.org/t/p/w500";
   return (
     <>
-      <div className="col border border-secondary mt-3 pb-3" style={{ boxShadow: "0 1px 3px 0", minHeight: "200px" }}>
-        <p className="text-center">{props.id}</p>
-        <img src={IMGPATH + props.image} alt="" className="w-100" />
-        <div className="d-flex justify-content-between px-2 text-center pb-1 ">
-          <span className="fs-6">{props.title}</span>
-          <span className="fs-6 text-warning fw-bold">{props.rating}</span>
-        </div>
-        <br />
-        <div className="">{props.desc}</div>
-      </div>
+      <Col>
+        <Card style={{ width: "18rem" }}>
+          <Card.Img variant="top" src={IMGPATH + props.image} alt="" />
+          <Card.Body>
+            <Card.Title>{props.title}</Card.Title>
+            <Card.Text>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-stars" viewBox="0 0 16 16">
+                <path d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828l.645-1.937zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.734 1.734 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.734 1.734 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.734 1.734 0 0 0 3.407 2.31l.387-1.162zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L10.863.1z"></path>
+              </svg>
+              {props.rating}
+            </Card.Text>
+            <Button variant="primary" onClick={handleShow}>
+              See Detail
+            </Button>
+          </Card.Body>
+        </Card>
+      </Col>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{props.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {props.id}
+          <Image variant="top" src={IMGPATH + props.image} alt="" thumbnail />
+          {props.desc}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

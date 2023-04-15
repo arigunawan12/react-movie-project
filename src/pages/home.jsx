@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { logout } from "../Components/api.js";
 import { Nav, NavDropdown } from "react-bootstrap";
+import DarkVariantExample from "../Components/Carousel";
 
 const key = process.env.REACT_APP_API_KEY;
 const url = process.env.REACT_APP_URL;
@@ -63,6 +64,7 @@ function Movie() {
           </Nav>
         </div>
       </nav>
+      <DarkVariantExample />
 
       <div className="mx-auto p-3" style={{ maxWidth: "1240px", minheight: "400px", boxShadow: "black 11px 11px 23px " }}>
         <input type="text" placeholder="Search your favorite movies here" value={search} onChange={changeTheSearch} className="w-100 border border-secondary rounded-2 p-2" style={{ color: "rgb(65,114,252)" }} />
